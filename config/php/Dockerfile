@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 		libzip-dev \
 		libonig-dev\
     && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
+    && docker-php-ext-install exif \
     && docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/\
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install xdebug \
