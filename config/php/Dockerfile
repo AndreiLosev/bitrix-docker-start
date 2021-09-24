@@ -1,5 +1,5 @@
 # Для начала указываем исходный образ, он будет использован как основа
-FROM php:7-apache
+FROM php:7.3-apache
 
 # RUN выполняет идущую за ней команду в контексте нашего образа.
 # В данном случае мы установим некоторые зависимости и модули PHP.
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 		libonig-dev\
     && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip \
     && docker-php-ext-install exif \
-    && docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/\
+    && docker-php-ext-configure gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-freetype-dir=/usr/include/\
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
